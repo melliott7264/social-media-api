@@ -19,7 +19,7 @@ const ReactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal = dayjs(createAtVal).format('MMM/DD/YYYY hh:mma')),
+      get: (createdAtVal) => dayjs(createdAtVal).format('MMM/DD/YYYY hh:mma'),
     },
   },
   {
@@ -29,7 +29,7 @@ const ReactionSchema = new Schema(
   }
 );
 
-const ThoughtSchmea = new Schema(
+const ThoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
@@ -40,7 +40,7 @@ const ThoughtSchmea = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal = dayjs(createdAtVal).format('MMM/DD/YYYY hh:mma')),
+      get: (createdAtVal) => dayjs(createdAtVal).format('MMM/DD/YYYY hh:mma'),
     },
     username: {
       type: String,
@@ -56,7 +56,7 @@ const ThoughtSchmea = new Schema(
   }
 );
 
-ThoughtSchmea.virtuals(reactionCount).get(function () {
+ThoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });
 
