@@ -6,6 +6,7 @@ const userController = {
     User.find({})
       .populate({
         path: 'thoughts',
+        path: 'friends',
         select: '-__v',
       })
       .select('-__v')
@@ -21,6 +22,7 @@ const userController = {
     User.findOne({ _id: params.userId })
       .populate({
         path: 'thoughts',
+        path: 'friends',
         select: '-__v',
       })
       .select('-__v')
@@ -37,7 +39,7 @@ const userController = {
       });
   },
   // createUser   /api/users
-  createUser({ params, body }, res) {
+  createUser({ body }, res) {
     User.create(body)
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
@@ -103,22 +105,15 @@ const userController = {
     User.findOneAndDelete({ _id: params.friendId })
       .then((deletedFriend) => {
         if (!deletedFriend) {
-          return res
-            .status(404)
-            .json({ message: 'No friend found with that id!' });
+          res.status(404).json({ message: 'No friend found with that id!' });
+          return;
         }
+        // This routine is not returning properly.
         return User.findOneAndUpdate(
           { _id: params.userId },
           { $pull: { friends: params.friendId } },
           { new: true }
         );
-      })
-      .then((dbUserData) => {
-        if (!dbUserData) {
-          res.status(404).json({ message: 'User with that id was not found!' });
-          return;
-        }
-        res.json(dbUserData);
       })
       .catch((err) => {
         console.log(err);
