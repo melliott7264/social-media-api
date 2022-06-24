@@ -82,18 +82,19 @@ const userController = {
   createFriend({ params, body }, res) {
     User.create(body)
       .then(({ _id }) => {
-        return User.findOneAndUpdate(
+        User.findOneAndUpdate(
           { _id: params.userId },
           { $push: { friends: _id } },
           { new: true }
-        );
-      })
-      .then((dbUserData) => {
-        if (!dbUserData) {
-          res.status(404).json({ message: 'User with that id was not found!' });
-          return;
-        }
-        res.json(dbUserData);
+        ).then((dbUserData) => {
+          if (!dbUserData) {
+            res
+              .status(404)
+              .json({ message: 'User with that id was not found!' });
+            return;
+          }
+          res.json(dbUserData);
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -108,11 +109,17 @@ const userController = {
           res.status(404).json({ message: 'No friend found with that id!' });
           return;
         }
-        return User.findOneAndUpdate(
+        User.findOneAndUpdate(
           { _id: params.userId },
           { $pull: { friends: params.friendId } },
           { new: true }
-        );
+        ).then((dbUserData) => {
+          if (!dbUserData) {
+            res.status(404).json({ message: 'No user with that id found!' });
+            return;
+          }
+          res.json(dbUserData);
+        });
       })
       .catch((err) => {
         console.log(err);
