@@ -64,6 +64,11 @@ JSON for POST
 DELETE at /api/thoughts/:thoughtId/reactions/:reactionId
 
 Walk-through Videos:
+Users: https://youtu.be/8GqdLEVPlMk
+Friends: https://youtu.be/Kbb1Wl1Xf8A
+Thoughts: https://youtu.be/9EowR01BVNY
+Reactions: https://youtu.be/29oqdf2m1VM
+Bonus: https://youtu.be/1YlEmGE-MFs
 
 ## Credits
 
