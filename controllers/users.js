@@ -1,12 +1,15 @@
-const { User } = require('../models');
+const { User, Thought } = require('../models');
 
 const userController = {
   // getAllUsers  /api/users/
   getAllUsers(req, res) {
     User.find({})
       .populate({
-        path: 'thoughts',
         path: 'friends',
+        select: '-__v',
+      })
+      .populate({
+        path: 'thoughts',
         select: '-__v',
       })
       .select('-__v')
@@ -21,8 +24,11 @@ const userController = {
   getUserById({ params }, res) {
     User.findOne({ _id: params.userId })
       .populate({
-        path: 'thoughts',
         path: 'friends',
+        select: '-__v',
+      })
+      .populate({
+        path: 'thoughts',
         select: '-__v',
       })
       .select('-__v')
@@ -69,6 +75,19 @@ const userController = {
         if (!dbUserData) {
           res.status(404).json({ message: 'User with that id was not found!' });
           return;
+        }
+        // Removing the thoughts associated with a username
+        for (let i = 0; i < dbUserData.thoughts.length; i++) {
+          Thought.findOneAndDelete({ _id: dbUserData.thoughts[i] }).then(
+            (dbThoughtData) => {
+              if (!dbThoughtData) {
+                res
+                  .status(404)
+                  .json({ message: 'No Thought with that id found!' });
+                return;
+              }
+            }
+          );
         }
         res.json(dbUserData);
       })
