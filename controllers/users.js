@@ -108,7 +108,6 @@ const userController = {
           res.status(404).json({ message: 'No friend found with that id!' });
           return;
         }
-        // This routine is not returning properly.
         return User.findOneAndUpdate(
           { _id: params.userId },
           { $pull: { friends: params.friendId } },
