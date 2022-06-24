@@ -13,7 +13,7 @@ const {
 // Setup GET all at /api/thoughts
 router.route('/').get(getAllThoughts);
 
-// Setup Post at /api/thoughts/:userId
+// Setup POST at /api/thoughts/:userId
 router.route('/:userId').post(createThought);
 
 // Setup GET one, PUT, and Delete at /api/thoughts/:thoughtId
