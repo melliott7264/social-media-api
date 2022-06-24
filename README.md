@@ -78,12 +78,6 @@ Bonus: https://youtu.be/1YlEmGE-MFs
 
 Mark Elliott https://github.com/melliott7264
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
-
 ## License
 
 Copyright (c) 2022 Mark Elliott
