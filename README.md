@@ -22,11 +22,12 @@ The 14 routes are as follows:
 Users:
 
 GET All and POST at /api/users
+
 GET One, PUT, and Delete at /api/users/:userId
 
 JSON for POST/PUT
 {
-"username":""
+"username":"",
 "email":""
 }
 
@@ -36,7 +37,7 @@ POST at /api/users/:userId/friends
 
 JSON for POST
 {
-"username":""
+"username":"",
 "email":""
 }
 
@@ -45,12 +46,14 @@ Delete at /api/users/:userId/friends/:friendId
 Thoughts:
 
 GET All at /api/thoughts
+
 POST at /api/thoughts/:userId
+
 GET One, and PUT at /api/thoughts/:thoughtId
 
 JSON for POST/PUT
 {
-"thoughtText":""
+"thoughtText":"",
 "username":""
 }
 
@@ -62,16 +65,22 @@ POST at /api/thoughts/:thoughtId/reactions
 
 JSON for POST
 {
-"reactionBody":""
+"reactionBody":"",
 "username":""
 }
+
 DELETE at /api/thoughts/:thoughtId/reactions/:reactionId
 
 Walk-through Videos:
+
 Users: https://youtu.be/8GqdLEVPlMk
+
 Friends: https://youtu.be/Kbb1Wl1Xf8A
+
 Thoughts: https://youtu.be/9EowR01BVNY
+
 Reactions: https://youtu.be/29oqdf2m1VM
+
 Bonus: https://youtu.be/1YlEmGE-MFs
 
 ## Credits
