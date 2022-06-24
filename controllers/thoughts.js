@@ -36,12 +36,13 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-  // createThought  /api/thoughts/:userId
+  // createThought  /api/thoughts
   createThought({ params, body }, res) {
     Thought.create(body)
       .then(({ _id }) => {
+        // must pass the userId in the body
         User.findOneAndUpdate(
-          { _id: params.userId },
+          { _id: body.userId },
           { $push: { thoughts: _id } },
           { new: true }
         ).then((dbThoughtData) => {
@@ -72,7 +73,7 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-  // deleteThought  /api/thoughts/:thoughtId/:userId
+  // deleteThought  /api/thoughts/:thoughtId
   deleteThought({ params }, res) {
     Thought.findOneAndDelete({ _id: params.thoughtId })
       .then((dbThoughtData) => {
@@ -81,12 +82,14 @@ const thoughtController = {
           return;
         }
         User.findOneAndUpdate(
-          { _id: params.userId },
+          { username: dbThoughtData.username },
           { $pull: { thoughts: params.thoughtId } },
           { new: true }
         ).then((dbUserData) => {
           if (!dbUserData) {
-            res.status(404).json({ message: 'No User with that id found!' });
+            res
+              .status(404)
+              .json({ message: 'No User with that username found!' });
             return;
           }
           res.json(dbUserData);
