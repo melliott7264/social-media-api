@@ -18,7 +18,9 @@ This project may be installed on a local server by cloning the repository at : h
 ## Usage
 
 The 14 routes are as follows:
+
 Users:
+
 GET All and POST at /api/users
 GET One, PUT, and Delete at /api/users/:userId
 
@@ -29,6 +31,7 @@ JSON for POST/PUT
 }
 
 Friends:
+
 POST at /api/users/:userId/friends
 
 JSON for POST
@@ -40,6 +43,7 @@ JSON for POST
 Delete at /api/users/:userId/friends/:friendId
 
 Thoughts:
+
 GET All at /api/thoughts
 POST at /api/thoughts/:userId
 GET One, and PUT at /api/thoughts/:thoughtId
