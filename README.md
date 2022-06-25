@@ -77,9 +77,9 @@ Users: https://youtu.be/8GqdLEVPlMk
 
 Friends: https://youtu.be/Kbb1Wl1Xf8A
 
-Thoughts: https://youtu.be/9EowR01BVNY
+Thoughts: https://youtu.be/Eb3rgo8I-qI
 
-Reactions: https://youtu.be/29oqdf2m1VM
+Reactions: https://youtu.be/S_TZ_5FX5eQ
 
 Bonus: https://youtu.be/1YlEmGE-MFs
 
